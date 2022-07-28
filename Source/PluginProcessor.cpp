@@ -19,7 +19,7 @@ WaveformViewerAudioProcessor::WaveformViewerAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       ), waveViewer(2)
+                       ), waveViewer(1)
 #endif
 {
     waveViewer.setRepaintRate(1024);
@@ -140,8 +140,13 @@ void WaveformViewerAudioProcessor::processBlock (juce::AudioBuffer<float>& buffe
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
 
-   
+    currentNumChannels = buffer.getNumChannels();
     waveViewer.pushBuffer(buffer);
+}
+
+int WaveformViewerAudioProcessor::getCurrentNumChannels()
+{
+    return currentNumChannels;
 }
 
 //==============================================================================

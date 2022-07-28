@@ -39,7 +39,11 @@ WaveformViewerAudioProcessorEditor::WaveformViewerAudioProcessorEditor (Waveform
     channelToggle.changeWidthToFitText();
     channelToggle.onClick = [this]()
     {
-        channelToggle.getToggleState() ? audioProcessor.waveViewer.setNumChannels(1) : audioProcessor.waveViewer.setNumChannels(2);
+        //Check to see if we have a single channel input or 2 channel input. 
+        if(audioProcessor.getCurrentNumChannels() > 1)
+        { 
+            channelToggle.getToggleState() ? audioProcessor.waveViewer.setNumChannels(2) : audioProcessor.waveViewer.setNumChannels(1);
+        }
     };
 }
 

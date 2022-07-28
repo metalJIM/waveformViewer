@@ -55,7 +55,11 @@ public:
 
     juce::AudioVisualiserComponent waveViewer;
 
+    int getCurrentNumChannels();
+
 private:
+
+    int currentNumChannels;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (WaveformViewerAudioProcessor)
 };
